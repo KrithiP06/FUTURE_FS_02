@@ -10,13 +10,13 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Serve frontend (IMPORTANT)
+// Serve frontend files
 app.use(express.static(path.join(__dirname, "../client")));
 
 // Database
 const db = new sqlite3.Database("crm.db");
 
-// Create table if not exists
+// Create table
 db.run(`
     CREATE TABLE IF NOT EXISTS leads (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,7 +28,7 @@ db.run(`
     )
 `);
 
-// Routes
+// ===== API ROUTES =====
 
 // Get all leads
 app.get("/api/leads", (req, res) => {
@@ -38,7 +38,7 @@ app.get("/api/leads", (req, res) => {
     });
 });
 
-// Add new lead
+// Add lead
 app.post("/api/leads", (req, res) => {
     const { name, email, source, notes } = req.body;
 
@@ -78,8 +78,8 @@ app.delete("/api/leads/:id", (req, res) => {
     );
 });
 
-// Fallback → serve frontend
-app.get("/*", (req, res) => {
+// ===== FRONTEND FALLBACK (IMPORTANT - Express v5 fix) =====
+app.use((req, res) => {
     res.sendFile(path.join(__dirname, "../client/index.html"));
 });
 
