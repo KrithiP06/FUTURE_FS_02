@@ -79,7 +79,7 @@ app.delete("/api/leads/:id", (req, res) => {
 });
 
 // Fallback → serve frontend
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/index.html"));
 });
 
