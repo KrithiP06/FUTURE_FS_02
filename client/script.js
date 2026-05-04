@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api/leads";
+const API = "https://future-fs-02-izvv.onrender.com/api/leads";
 
 // Add lead
 document.getElementById("form").addEventListener("submit", async (e) => {
