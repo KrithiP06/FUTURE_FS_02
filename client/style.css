@@ -1,90 +1,747 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #1e1e2f, #3a3a6a);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+
+/* =========================
+   APP LAYOUT
+========================= */
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 250px;
+    background: #111827;
     color: white;
-    padding: 20px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
 }
 
-/* Heading */
-h1 {
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #6366f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.nav-item:hover {
+    background: #1f2937;
+    color: white;
+}
+
+.nav-item.active {
+    background: #6366f1;
+    color: white;
+}
+
+.nav-item span {
+    width: 20px;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-/* Form container */
-form {
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 400px;
-    margin: auto;
-    backdrop-filter: blur(10px);
+.sidebar-footer {
+    margin-top: auto;
+    padding: 14px 10px;
+    border-top: 1px solid #1f2937;
+    color: #9ca3af;
+    font-size: 12px;
 }
 
-/* Labels */
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
+.sidebar-footer p {
+    color: white;
+    margin-bottom: 4px;
 }
 
-/* Inputs */
-input, textarea {
-    width: 100%;
-    margin: 8px 0;
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    background: rgba(255,255,255,0.9);
-    color: black;
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 32px;
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.topbar h1 {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.topbar p {
+    color: #6b7280;
     font-size: 14px;
 }
 
-/* Placeholder text */
-input::placeholder,
-textarea::placeholder {
-    color: #555;
-}
 
-/* Button */
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 6px;
+/* =========================
+   BUTTONS
+========================= */
+
+.primary-btn {
     border: none;
-    background: #00c6ff;
-    color: black;
-    font-weight: bold;
+    background: #6366f1;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.2s ease;
 }
 
-button:hover {
-    background: #00a3cc;
+.primary-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-1px);
 }
 
-/* Leads list */
-ul {
-    max-width: 500px;
-    margin: 30px auto;
-    padding: 0;
+.secondary-btn {
+    border: 1px solid #d1d5db;
+    background: white;
+    color: #374151;
+    padding: 11px 18px;
+    border-radius: 9px;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-/* Each lead card */
-li {
-    list-style: none;
-    background: rgba(255,255,255,0.1);
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 10px;
+.close-btn {
+    border: none;
+    background: transparent;
+    font-size: 26px;
+    color: #6b7280;
+    cursor: pointer;
 }
 
-/* Buttons inside lead */
-li button {
-    width: auto;
-    margin-right: 10px;
-    margin-top: 10px;
-    padding: 6px 10px;
+
+/* =========================
+   STATISTICS
+========================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.stat-label {
+    display: block;
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.stat-card strong {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.stat-description {
+    color: #9ca3af;
     font-size: 12px;
+}
+
+
+/* =========================
+   LEADS SECTION
+========================= */
+
+.leads-section {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.section-header p {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+
+/* =========================
+   FILTERS
+========================= */
+
+.filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.filters input,
+.filters select {
+    border: 1px solid #d1d5db;
+    background: white;
+    color: #374151;
+    padding: 11px 13px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.filters input {
+    flex: 1;
+}
+
+.filters input:focus,
+.filters select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f9fafb;
+}
+
+th {
+    text-align: left;
+    padding: 13px 14px;
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+td {
+    padding: 15px 14px;
+    border-top: 1px solid #f0f1f3;
+    font-size: 14px;
+    color: #374151;
+}
+
+tbody tr:hover {
+    background: #fafafa;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: #6b7280;
+}
+
+.empty-state h3 {
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.empty-state p {
+    font-size: 13px;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 520px;
+    background: white;
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.modal-header h2 {
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+.modal-header p {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 7px;
+    color: #374151;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 11px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        margin-left: 210px;
+        width: calc(100% - 210px);
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-new {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.status-contacted {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.status-qualified {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.status-converted {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.status-lost {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+/* =========================
+   TABLE ACTION BUTTONS
+========================= */
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.table-btn {
+    border: 1px solid transparent;
+    padding: 6px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.edit-btn {
+    background: #f3f4f6;
+    color: #374151;
+    border-color: #e5e7eb;
+}
+
+.edit-btn:hover {
+    background: #e5e7eb;
+}
+
+.delete-btn {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+}
+
+/* =========================
+   LOADING STATE
+========================= */
+
+.loading-cell {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* =========================
+   TOAST NOTIFICATION
+========================= */
+
+.toast {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+
+    background: #111827;
+    color: white;
+
+    padding: 13px 18px;
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+
+    z-index: 2000;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Leads Page Full Edit Modal */
+#leadEditModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    padding: 20px;
+}
+
+#leadEditModal .modal {
+    width: min(650px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25);
+}
+
+/* Full Edit Form - Leads Page */
+
+#leadEditModal .modal {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+    background: #ffffff !important;
+    color: #111827 !important;
+    width: min(650px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 14px;
+    padding: 28px;
+    box-sizing: border-box;
+}
+
+#leadEditModal .modal-header {
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+#leadEditModal h2,
+#leadEditModal p,
+#leadEditModal label {
+    color: #111827 !important;
+}
+
+#leadEditModal form {
+    display: block !important;
+}
+
+#leadEditModal .form-group {
+    display: flex !important;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+#leadEditModal input,
+#leadEditModal select,
+#leadEditModal textarea {
+    display: block !important;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 14px;
+}
+
+#leadEditModal .form-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+#leadEditModal .modal-actions {
+    display: flex !important;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+#leadEditModal .modal-close {
+    display: block !important;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    #leadEditModal .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Leads Edit Modal Buttons */
+
+#leadEditModal .modal-close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    color: #6b7280 !important;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+#leadEditModal .modal-close:hover {
+    background: #f3f4f6;
+    color: #111827 !important;
+}
+
+#leadEditModal .secondary-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #374151 !important;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#leadEditModal .secondary-btn:hover {
+    background: #f3f4f6;
 }

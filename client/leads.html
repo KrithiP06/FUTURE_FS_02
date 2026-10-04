@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leads | LeadFlow</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">L</div>
+            <span>LeadFlow</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a href="leads.html" class="nav-item active">
+                <span>◉</span>
+                Leads
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>◒</span>
+                Analytics
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>LeadFlow CRM</p>
+            <span>Internship Project</span>
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Leads</h1>
+                <p>Manage and update your leads.</p>
+            </div>
+
+            <button class="primary-btn" id="addLeadBtn">
+    + Add New Lead
+</button>
+
+        </header>
+
+
+        <section class="leads-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>All Leads</h2>
+                    <p>View, edit, and manage your customer leads.</p>
+                </div>
+
+            </div>
+
+
+            <div class="filters">
+
+                <input
+                    type="text"
+                    id="leadSearch"
+                    placeholder="Search leads..."
+                >
+
+                <select id="leadStatusFilter">
+
+                    <option value="">
+                        All Statuses
+                    </option>
+
+                    <option value="New">
+                        New
+                    </option>
+
+                    <option value="Contacted">
+                        Contacted
+                    </option>
+
+                    <option value="Qualified">
+                        Qualified
+                    </option>
+
+                    <option value="Converted">
+                        Converted
+                    </option>
+
+                    <option value="Lost">
+                        Lost
+                    </option>
+
+                </select>
+
+                <select id="leadSourceFilter">
+
+                    <option value="">
+                        All Sources
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Source</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="leadsTableBody">
+
+                        <tr>
+                            <td colspan="6" class="loading-cell">
+                                Loading leads...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <div class="modal-overlay" id="leadEditModal">
+    <div class="modal">
+        <div class="modal-header">
+            <div>
+                <h2>Edit Lead</h2>
+                <p>Update all lead information.</p>
+            </div>
+            <button class="modal-close" id="closeLeadEditModal">&times;</button>
+        </div>
+
+        <form id="leadEditForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="leadEditName">Name</label>
+                    <input type="text" id="leadEditName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="leadEditEmail">Email</label>
+                    <input type="email" id="leadEditEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="leadEditSource">Source</label>
+                    <select id="leadEditSource">
+    <option value="">Select source</option>
+    <option value="Website">Website</option>
+    <option value="LinkedIn">LinkedIn</option>
+    <option value="Instagram">Instagram</option>
+    <option value="Referral">Referral</option>
+    <option value="Other">Other</option>
+</select>
+                </div>
+
+                <div class="form-group">
+                    <label for="leadEditStatus">Status</label>
+                    <select id="leadEditStatus" required>
+                        <option value="New">New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Qualified">Qualified</option>
+                        <option value="Converted">Converted</option>
+                        <option value="Lost">Lost</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="leadEditNotes">Notes</label>
+                <textarea id="leadEditNotes" rows="4"></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="cancelLeadEdit">
+                    Cancel
+                </button>
+                <button type="submit" class="primary-btn">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    </main>
+
+    <div id="leadModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div>
+                    <h2>Add New Lead</h2>
+                    <p>Enter the lead's information below.</p>
+                </div>
+
+                <button id="closeModalBtn" class="close-btn">
+                    ×
+                </button>
+            </div>
+
+
+            <form id="leadForm">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter lead name"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter email address"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="source">Source</label>
+                    <select id="source">
+                        <option value="">Select source</option>
+                        <option value="Website">Website</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea
+                        id="notes"
+                        placeholder="Add any notes about this lead..."
+                        rows="4"
+                    ></textarea>
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        id="cancelBtn"
+                        class="secondary-btn"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Add Lead
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    
+    <script src="script.js"></script>
+
+</body>
+
+</html>
